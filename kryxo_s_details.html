@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal Profile Website" />
+  <title>KRYXO's details</title>
+
+  <link rel="icon" type="image/jpeg" href="https://i.ibb.co.com/BHr5P25d/Gemini-Generated-Image-6exu9h6exu9h6exu.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #030611;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    #background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .18);
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      z-index: -2;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 15px;
+      gap: 15px;
+    }
+
+    /* GLASS PROFILE CARD */
+
+    .profile {
+      width: 100%;
+      max-width: 640px;
+      padding: 35px 25px 20px;
+      text-align: center;
+      border-radius: 22px;
+      background: rgba(20, 20, 20, .35);
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 15px 60px rgba(0, 0, 0, .22);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      animation: appear 1s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avatar {
+      display: block;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, .8);
+      box-shadow: 0 0 25px rgba(255, 255, 255, .2);
+      margin: 0 auto;
+    }
+
+    /* KRYXOO WAVY DISTORTION NAME */
+
+    .username {
+      position: relative;
+      display: block;
+      width: max-content;
+      margin: 12px auto 0;
+      text-align: center;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1.25;
+      color: #fff;
+      filter: url(#textDistortion);
+      animation: nameShake .32s infinite steps(2, end);
+    }
+
+    @keyframes nameShake {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(-1px, 1px) rotate(-.4deg);
+      }
+      50% {
+        transform: translate(1px, -1px) rotate(.4deg);
+      }
+      75% {
+        transform: translate(-1px, -1px) rotate(0deg);
+      }
+    }
+
+    .status {
+      color: #eee;
+      font-size: 14px;
+      margin-top: 7px;
+      letter-spacing: 2px;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 19px;
+      margin: 32px 0 28px;
+    }
+
+    .socials a {
+      color: white;
+      font-size: 29px;
+      text-decoration: none;
+      transition: .3s;
+      text-shadow: 0 0 12px rgba(255, 255, 255, .7);
+    }
+
+    .socials a:hover {
+      transform: translateY(-5px) scale(1.15);
+      color: #ccc;
+    }
+
+    .views {
+      font-size: 13px;
+      color: #eee;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 25px;
+      color: rgba(255, 255, 255, .65);
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* GLASS MUSIC PLAYER */
+
+    .music-player {
+      width: 100%;
+      max-width: 640px;
+      min-height: 88px;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-radius: 18px;
+      background: rgba(20, 20, 20, .38);
+      border: 1px solid rgba(255, 255, 255, .16);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .2);
+      backdrop-filter: blur(12px) saturate(140%);
+      -webkit-backdrop-filter: blur(12px) saturate(140%);
+      text-align: left;
+      animation: appear 1.2s ease;
+    }
+
+    .music-cover {
+      width: 62px;
+      height: 62px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .music-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .music-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .music-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .7);
+      margin-top: 3px;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 10px;
+      color: white;
+      font-size: 12px;
+    }
+
+    #musicSeek {
+      flex: 1;
+      min-width: 30px;
+      height: 3px;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      border-radius: 10px;
+      background: linear-gradient(
+        to right,
+        white 0%,
+        rgba(255, 255, 255, .3) 0%
+      );
+      cursor: pointer;
+    }
+
+    #musicSeek::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+
+    #musicSeek::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+    }
+
+    /* MUSIC BUTTONS */
+
+    .player-buttons {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-left: 12px;
+      flex-shrink: 0;
+    }
+
+    .skip-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, .75);
+      font-size: 15px;
+      cursor: pointer;
+      padding: 5px;
+      transition: .2s;
+    }
+
+    .play-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 19px;
+      cursor: pointer;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s;
+    }
+
+    .skip-btn:hover,
+    .play-btn:hover {
+      color: white;
+      transform: scale(1.15);
+    }
+
+    .skip-btn:active {
+      transform: scale(.9);
+    }
+
+    /* ENTER SCREEN */
+
+    #enterScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      cursor: pointer;
+      transition: opacity .8s ease, visibility .8s ease;
+    }
+
+    #enterScreen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .enter-content {
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .enter-content h2 {
+      font-size: 23px;
+      font-weight: 300;
+      letter-spacing: 8px;
+    }
+
+    .enter-content h1 {
+      font-size: 40px;
+      letter-spacing: 5px;
+      margin: 12px 0;
+      color: white;
+      text-shadow: 0 0 20px white;
+    }
+
+    .enter-content h3 {
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 9px;
+    }
+
+    .enter-content p {
+      margin-top: 45px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #aaa;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: .25;
+      }
+    }
+
+    /* MOBILE RESPONSIVE */
+
+    @media (max-width: 480px) {
+      .profile {
+        padding: 30px 18px 20px;
+      }
+
+      .username {
+        font-size: 25px;
+      }
+
+      .socials {
+        gap: 20px;
+      }
+
+      .socials a {
+        font-size: 25px;
+      }
+
+      .music-player {
+        gap: 9px;
+        padding: 11px;
+      }
+
+      .music-cover {
+        width: 48px;
+        height: 48px;
+      }
+
+      .music-controls {
+        gap: 5px;
+        font-size: 10px;
+      }
+
+      .player-buttons {
+        gap: 3px;
+        margin-left: 5px;
+      }
+
+      .play-btn {
+        font-size: 19px;
+        padding: 5px;
+      }
+
+      .skip-btn {
+        font-size: 14px;
+        padding: 4px 2px;
+      }
+    }
+
+    .roblox-icon {
+      width: 29px;
+      height: 29px;
+      display: block;
+      object-fit: contain;
+      transition: .3s;
+    }
+
+    .socials a:hover .roblox-icon {
+      transform: translateY(-5px) scale(1.15);
+    }
+
+    * {
+      cursor: url('https://cdn.cursors-4u.net/previews/cool-hot-red-pointer-c1a1bc17-32.webp') 32 32, auto !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- BACKGROUND VIDEO -->
+  <video autoplay id="background" loop muted playsinline>
+    <source src="https://pub-4fde51e081324b0db6efb10811c7e201.r2.dev/Screen%20Recording%202026-11-10%20010117.mp4" type="video/mp4" />
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- ENTER SCREEN -->
+  <div id="enterScreen">
+    <div class="enter-content">
+      <h2>WELCOME</h2>
+      <h1>KRYXO'S</h1>
+      <h3>DOMAIN</h3>
+      <p>CLICK TO ENTER</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- PROFILE CARD -->
+    <main class="profile">
+      <img alt="KRYXOO Profile" class="avatar" src="https://i.ibb.co.com/BHr5P25d/Gemini-Generated-Image-6exu9h6exu9h6exu.jpg" />
+
+      <!-- SVG TEXT DISTORTION FILTER -->
+      <svg aria-hidden="true" height="0" style="position:absolute;overflow:hidden" width="0">
+        <filter height="170%" id="textDistortion" width="150%" x="-25%" y="-35%">
+          <feTurbulence baseFrequency="0.025 0.08" numOctaves="2" result="noise" seed="3" type="fractalNoise">
+            <animate attributeName="baseFrequency" dur="0.35s" repeatCount="indefinite" values="0.025 0.08;0.04 0.12;0.02 0.06;0.025 0.08" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="7" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+
+      <h1 class="username" data-text="SAFIN">KRYXOO</h1>
+      <p class="status">HELLO, my name is safin</p>
+
+      <!-- SOCIAL LINKS -->
+      <div class="socials">
+        <a href="https://discord.com/users/1523746279350472835" rel="noopener noreferrer" target="_blank" title="Discord">
+          <i class="fa-brands fa-discord"></i>
+        </a>
+
+        <a href="https://github.com/iam-safin" rel="noopener noreferrer" target="_blank" title="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+
+        <a href="https://www.instagram.com/1am_safin/?__pwa=1" rel="noopener noreferrer" target="_blank" title="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://open.spotify.com/user/313puivtup2fqt6qpg5junvmql4a/" rel="noopener noreferrer" target="_blank" title="Spotify">
+          <i class="fa-brands fa-spotify"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@iam_safin" rel="noopener noreferrer" target="_blank" title="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+
+        <a href="https://t.me/iam_safin" rel="noopener noreferrer" target="_blank" title="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a href="https://x.com/iam_safin" rel="noopener noreferrer" target="_blank" title="X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+
+        <a href="https://www.roblox.com/users/11563548455/profile" rel="noopener noreferrer" target="_blank" title="Roblox">
+          <img alt="Roblox" class="roblox-icon" src="https://cdn.simpleicons.org/roblox/ffffff" />
+        </a>
+      </div>
+
+      <!-- VISITOR COUNTER -->
+      <div class="views">
+        <i class="fa-solid fa-eye"></i>
+        <span id="visitorCount">0</span>
+      </div>
+
+      <div class="footer">
+        MADE BY KRYXO
+      </div>
+    </main>
+
+    <!-- MUSIC CARD -->
+    <div class="music-player">
+      <img alt="Music Cover" class="music-cover" src="https://i.ibb.co.com/MJ31Rn6/18b25cbd-08c8-474e-8d17-373847f1919d.webp" />
+
+      <div class="music-info">
+        <div class="music-title">NO BATIDÃO</div>
+        <div class="music-sub">ZXKAI</div>
+
+        <div class="music-controls">
+          <span id="currentTime">0:00</span>
+          <input id="musicSeek" max="100" min="0" type="range" value="0" />
+          <span id="duration">0:00</span>
+
+          <div class="player-buttons">
+            <button aria-label="Back 10 seconds" class="skip-btn" id="backwardBtn" title="Back 10 seconds" type="button">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+
+            <button aria-label="Play or pause music" class="play-btn" id="playButton" type="button">
+              <i class="fa-solid fa-play"></i>
+            </button>
+
+            <button aria-label="Forward 10 seconds" class="skip-btn" id="forwardBtn" title="Forward 10 seconds" type="button">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUDIO -->
+      <audio id="music" loop preload="metadata">
+        <source src="https://videotourl.com/audio/1794410834836-ca8c72ce-efd2-473b-9f9a-069cd43ef790.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+  </div>
+
+  <script>
+    const music = document.getElementById('music');
+    const playButton = document.getElementById('playButton');
+    const seekBar = document.getElementById('musicSeek');
+
+    const currentTime = document.getElementById('currentTime');
+    const duration = document.getElementById('duration');
+
+    const enterScreen = document.getElementById('enterScreen');
+
+    let isSeeking = false;
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds) || seconds < 0) {
+        return '0:00';
+      }
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return minutes + ':' + String(secs).padStart(2, '0');
+    }
+
+    function updatePlayButton() {
+      if (music.paused) {
+        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
+      } else {
+        playButton.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      }
+    }
+
+    function updateTimeline() {
+      if (Number.isFinite(music.duration) && music.duration > 0) {
+        const progress = (music.currentTime / music.duration) * 100;
+        if (!isSeeking) {
+          seekBar.value = progress;
+          seekBar.style.background =
+            'linear-gradient(to right, white ' +
+            progress +
+            '%, rgba(255,255,255,.3) ' +
+            progress +
+            '%)';
+        }
+        duration.textContent = formatTime(music.duration);
+      }
+      currentTime.textContent = formatTime(music.currentTime);
+    }
+
+    music.addEventListener('loadedmetadata', updateTimeline);
+    music.addEventListener('durationchange', updateTimeline);
+    music.addEventListener('timeupdate', updateTimeline);
+
+    seekBar.addEventListener('pointerdown', function() {
+      isSeeking = true;
+    });
+
+    seekBar.addEventListener('input', function() {
+      const progress = Number(seekBar.value);
+      seekBar.style.background =
+        'linear-gradient(to right, white ' +
+        progress +
+        '%, rgba(255,255,255,.3) ' +
+        progress +
+        '%)';
+      if (Number.isFinite(music.duration) && music.duration > 0) {
+        const previewTime = (music.duration * progress) / 100;
+        currentTime.textContent = formatTime(previewTime);
+      }
+    });
+
+    function seekMusic() {
+      if (Number.isFinite(music.duration) && music.duration > 0) {
+        music.currentTime = (music.duration * Number(seekBar.value)) / 100;
+      }
+      isSeeking = false;
+      updateTimeline();
+    }
+
+    seekBar.addEventListener('change', seekMusic);
+    seekBar.addEventListener('pointerup', seekMusic);
+    seekBar.addEventListener('pointercancel', function() {
+      isSeeking = false;
+      updateTimeline();
+    });
+
+    document.getElementById('backwardBtn').addEventListener('click', function() {
+      if (!Number.isFinite(music.duration) || music.duration <= 0) return;
+      music.currentTime = Math.max(0, music.currentTime - 10);
+      updateTimeline();
+    });
+
+    document.getElementById('forwardBtn').addEventListener('click', function() {
+      if (!Number.isFinite(music.duration) || music.duration <= 0) return;
+      music.currentTime = Math.min(music.duration, music.currentTime + 10);
+      updateTimeline();
+    });
+
+    playButton.addEventListener('click', function() {
+      if (music.paused) {
+        music.play().then(function() {
+          updatePlayButton();
+        }).catch(function() {
+          alert('Please check your music file URL.');
+        });
+      } else {
+        music.pause();
+        updatePlayButton();
+      }
+    });
+
+    music.addEventListener('play', updatePlayButton);
+    music.addEventListener('pause', updatePlayButton);
+    music.addEventListener('seeked', updateTimeline);
+
+    enterScreen.addEventListener('click', function() {
+      music.play().then(function() {
+        updatePlayButton();
+      }).catch(function() {
+        updatePlayButton();
+      });
+      enterScreen.classList.add('hide');
+    });
+
+    let visits = Number(localStorage.getItem('profileVisits') || 0);
+    if (!sessionStorage.getItem('profileVisited')) {
+      visits++;
+      localStorage.setItem('profileVisits', visits);
+      sessionStorage.setItem('profileVisited', 'yes');
+    }
+    document.getElementById('visitorCount').textContent = visits;
+  </script>
+</body>
+</html>
